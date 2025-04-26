@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FE7558D-ABD7-4199-BD06-AC3858259CEC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Presentacion</RootNamespace>
+    <AssemblyName>Presentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormIniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIniciarSesion.Designer.cs">
+      <DependentUpon>FormIniciarSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInicio.Designer.cs">
+      <DependentUpon>FormInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPantallaPrincipalVistaAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPantallaPrincipalVistaAdministrador.Designer.cs">
+      <DependentUpon>FormPantallaPrincipalVistaAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPantallaPrincipalVistaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPantallaPrincipalVistaCliente.Designer.cs">
+      <DependentUpon>FormPantallaPrincipalVistaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPantallaRegistroDeCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPantallaRegistroDeCliente.Designer.cs">
+      <DependentUpon>FormPantallaRegistroDeCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPantallaRegistroReseñaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPantallaRegistroReseñaCliente.Designer.cs">
+      <DependentUpon>FormPantallaRegistroReseñaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistrarPedidoCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistrarPedidoCliente.Designer.cs">
+      <DependentUpon>FormRegistrarPedidoCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerClientes.Designer.cs">
+      <DependentUpon>FormVerClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerPedidosPorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerPedidosPorCliente.Designer.cs">
+      <DependentUpon>FormVerPedidosPorCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerProductosConReseñas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerProductosConReseñas.Designer.cs">
+      <DependentUpon>FormVerProductosConReseñas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerReportes.Designer.cs">
+      <DependentUpon>FormVerReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVerReseñasPorProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormVerReseñasPorProducto.Designer.cs">
+      <DependentUpon>FormVerReseñasPorProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormIniciarSesion.resx">
+      <DependentUpon>FormIniciarSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInicio.resx">
+      <DependentUpon>FormInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPantallaPrincipalVistaAdministrador.resx">
+      <DependentUpon>FormPantallaPrincipalVistaAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPantallaPrincipalVistaCliente.resx">
+      <DependentUpon>FormPantallaPrincipalVistaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPantallaRegistroDeCliente.resx">
+      <DependentUpon>FormPantallaRegistroDeCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPantallaRegistroReseñaCliente.resx">
+      <DependentUpon>FormPantallaRegistroReseñaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistrarPedidoCliente.resx">
+      <DependentUpon>FormRegistrarPedidoCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerClientes.resx">
+      <DependentUpon>FormVerClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerPedidosPorCliente.resx">
+      <DependentUpon>FormVerPedidosPorCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerProductosConReseñas.resx">
+      <DependentUpon>FormVerProductosConReseñas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerReportes.resx">
+      <DependentUpon>FormVerReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVerReseñasPorProducto.resx">
+      <DependentUpon>FormVerReseñasPorProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{51cf39c7-0e9a-4b08-a900-5f2e33c009ff}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{45f151f6-fefd-41c8-be49-c39a75bce1b5}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelEF" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="BDEFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="ProductosConReclamos" EntityType="ModelEF.ProductosConReclamos" />
+    <EntitySet Name="ProductosMejorCalificados" EntityType="ModelEF.ProductosMejorCalificados" />
+    <EntitySet Name="CantidadDePedidosPorCliente" EntityType="ModelEF.CantidadDePedidosPorCliente" />
+    <EntitySet Name="ProductosMasVendidos" EntityType="ModelEF.ProductosMasVendidos" />
+    <EntitySet Name="CantidadDeReclamosPorAgente" EntityType="ModelEF.CantidadDeReclamosPorAgente" />
+    <EntitySet Name="Agente" EntityType="ModelEF.Agente" />
+    <EntitySet Name="Cliente" EntityType="ModelEF.Cliente" />
+    <EntitySet Name="Pedido" EntityType="ModelEF.Pedido" />
+    <EntitySet Name="Producto_por_Pedido" EntityType="ModelEF.Producto_por_Pedido" />
+    <EntitySet Name="Productos" EntityType="ModelEF.Productos" />
+    <EntitySet Name="Reclamo" EntityType="ModelEF.Reclamo" />
+    <EntitySet Name="Usuario" EntityType="ModelEF.Usuario" />
+    <AssociationSet Name="FK_Reclamo_Agente" Association="ModelEF.FK_Reclamo_Agente">
+      <End Role="Agente" EntitySet="Agente" />
+      <End Role="Reclamo" EntitySet="Reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="ModelEF.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cliente" Association="ModelEF.FK_Usuario_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_por_pedido_Pedido" Association="ModelEF.FK_producto_por_pedido_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_por_pedido_Productos" Association="ModelEF.FK_producto_por_pedido_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamo_producto_por_pedido" Association="ModelEF.FK_Reclamo_producto_por_pedido">
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+      <End Role="Reclamo" EntitySet="Reclamo" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProductosConReclamos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad_reclamos" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductosMejorCalificados">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="calificacion_promedio" Type="Decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <EntityType Name="CantidadDePedidosPorCliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad_pedidos" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductosMasVendidos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="total_vendido" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="precio_producto" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="total_vendido" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CantidadDeReclamosPorAgente">
+    <Key>
+      <PropertyRef Name="id_agente" />
+    </Key>
+    <Property Name="id_agente" Type="Int32" Nullable="false" />
+    <Property Name="nombres_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad_reclamos" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Agente">
+    <Key>
+      <PropertyRef Name="id_agente" />
+    </Key>
+    <Property Name="id_agente" Type="Int32" Nullable="false" />
+    <Property Name="nombres_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Reclamo" Relationship="ModelEF.FK_Reclamo_Agente" FromRole="Agente" ToRole="Reclamo" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dni" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Pedido" Relationship="ModelEF.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+    <NavigationProperty Name="Usuario" Relationship="ModelEF.FK_Usuario_Cliente" FromRole="Cliente" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+    </Key>
+    <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="ModelEF.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_producto_por_pedido_Pedido" FromRole="Pedido" ToRole="Producto_por_Pedido" />
+  </EntityType>
+  <EntityType Name="Producto_por_Pedido">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_pedido" Type="Int32" Nullable="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad_producto" Type="Int32" />
+    <Property Name="subtotal_producto" Type="Decimal" Precision="12" Scale="2" />
+    <NavigationProperty Name="Pedido" Relationship="ModelEF.FK_producto_por_pedido_Pedido" FromRole="Producto_por_Pedido" ToRole="Pedido" />
+    <NavigationProperty Name="Productos" Relationship="ModelEF.FK_producto_por_pedido_Productos" FromRole="Producto_por_Pedido" ToRole="Productos" />
+    <NavigationProperty Name="Reclamo" Relationship="ModelEF.FK_Reclamo_producto_por_pedido" FromRole="Producto_por_Pedido" ToRole="Reclamo" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="precio_producto" Type="Decimal" Precision="12" Scale="2" />
+    <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_producto_por_pedido_Productos" FromRole="Productos" ToRole="Producto_por_Pedido" />
+  </EntityType>
+  <EntityType Name="Reclamo">
+    <Key>
+      <PropertyRef Name="id_reclamo" />
+    </Key>
+    <Property Name="id_reclamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_reclamo" Type="DateTime" Precision="0" />
+    <Property Name="calificacion" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="agente_id" Type="Int32" Nullable="false" />
+    <Property Name="id_pedido" Type="Int32" Nullable="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agente" Relationship="ModelEF.FK_Reclamo_Agente" FromRole="Reclamo" ToRole="Agente" />
+    <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_Reclamo_producto_por_pedido" FromRole="Reclamo" ToRole="Producto_por_Pedido" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cliente_id" Type="Int32" />
+    <NavigationProperty Name="Cliente" Relationship="ModelEF.FK_Usuario_Cliente" FromRole="Usuario" ToRole="Cliente" />
+  </EntityType>
+  <Association Name="FK_Reclamo_Agente">
+    <End Type="ModelEF.Agente" Role="Agente" Multiplicity="1" />
+    <End Type="ModelEF.Reclamo" Role="Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agente">
+        <PropertyRef Name="id_agente" />
+      </Principal>
+      <Dependent Role="Reclamo">
+        <PropertyRef Name="agente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente">
+    <End Type="ModelEF.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ModelEF.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cliente">
+    <End Type="ModelEF.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="ModelEF.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_por_pedido_Pedido">
+    <End Type="ModelEF.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="Producto_por_Pedido">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_por_pedido_Productos">
+    <End Type="ModelEF.Productos" Role="Productos" Multiplicity="1" />
+    <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="Producto_por_Pedido">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamo_producto_por_pedido">
+    <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="1" />
+    <End Type="ModelEF.Reclamo" Role="Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto_por_Pedido">
+        <PropertyRef Name="id_pedido" />
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="Reclamo">
+        <PropertyRef Name="id_pedido" />
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

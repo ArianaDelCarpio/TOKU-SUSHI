@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelEFStoreContainer" CdmEntityContainer="BDEFEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ModelEF.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosConReclamos">
+      <EntityTypeMapping TypeName="ModelEF.ProductosConReclamos">
+        <MappingFragment StoreEntitySet="ProductosConReclamos">
+          <ScalarProperty Name="cantidad_reclamos" ColumnName="cantidad_reclamos" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosMejorCalificados">
+      <EntityTypeMapping TypeName="ModelEF.ProductosMejorCalificados">
+        <MappingFragment StoreEntitySet="ProductosMejorCalificados">
+          <ScalarProperty Name="calificacion_promedio" ColumnName="calificacion_promedio" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CantidadDePedidosPorCliente">
+      <EntityTypeMapping TypeName="ModelEF.CantidadDePedidosPorCliente">
+        <MappingFragment StoreEntitySet="CantidadDePedidosPorCliente">
+          <ScalarProperty Name="cantidad_pedidos" ColumnName="cantidad_pedidos" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosMasVendidos">
+      <EntityTypeMapping TypeName="ModelEF.ProductosMasVendidos">
+        <MappingFragment StoreEntitySet="ProductosMasVendidos">
+          <ScalarProperty Name="total_vendido" ColumnName="total_vendido" />
+          <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+          <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CantidadDeReclamosPorAgente">
+      <EntityTypeMapping TypeName="ModelEF.CantidadDeReclamosPorAgente">
+        <MappingFragment StoreEntitySet="CantidadDeReclamosPorAgente">
+          <ScalarProperty Name="cantidad_reclamos" ColumnName="cantidad_reclamos" />
+          <ScalarProperty Name="apellidos_agente" ColumnName="apellidos_agente" />
+          <ScalarProperty Name="nombres_agente" ColumnName="nombres_agente" />
+          <ScalarProperty Name="id_agente" ColumnName="id_agente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Agente">
+      <EntityTypeMapping TypeName="ModelEF.Agente">
+        <MappingFragment StoreEntitySet="Agente">
+          <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+          <ScalarProperty Name="apellidos_agente" ColumnName="apellidos_agente" />
+          <ScalarProperty Name="nombres_agente" ColumnName="nombres_agente" />
+          <ScalarProperty Name="id_agente" ColumnName="id_agente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="ModelEF.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="ModelEF.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto_por_Pedido">
+      <EntityTypeMapping TypeName="ModelEF.Producto_por_Pedido">
+        <MappingFragment StoreEntitySet="Producto_por_Pedido">
+          <ScalarProperty Name="subtotal_producto" ColumnName="subtotal_producto" />
+          <ScalarProperty Name="cantidad_producto" ColumnName="cantidad_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="ModelEF.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+          <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+          <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reclamo">
+      <EntityTypeMapping TypeName="ModelEF.Reclamo">
+        <MappingFragment StoreEntitySet="Reclamo">
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+          <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+          <ScalarProperty Name="agente_id" ColumnName="agente_id" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="fecha_reclamo" ColumnName="fecha_reclamo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="categoria" ColumnName="categoria" />
+          <ScalarProperty Name="id_reclamo" ColumnName="id_reclamo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="ModelEF.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

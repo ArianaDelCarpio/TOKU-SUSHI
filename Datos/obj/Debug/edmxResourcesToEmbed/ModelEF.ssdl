@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelEF.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agente">
+    <Key>
+      <PropertyRef Name="id_agente" />
+    </Key>
+    <Property Name="id_agente" Type="int" Nullable="false" />
+    <Property Name="nombres_agente" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos_agente" Type="varchar" MaxLength="50" />
+    <Property Name="especialidad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" />
+    <Property Name="dni" Type="char" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+    </Key>
+    <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="total" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Producto_por_Pedido">
+    <Key>
+      <PropertyRef Name="id_pedido" />
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_pedido" Type="int" Nullable="false" />
+    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="cantidad_producto" Type="int" />
+    <Property Name="subtotal_producto" Type="decimal" Precision="12" Scale="2" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion_producto" Type="varchar" MaxLength="200" />
+    <Property Name="precio_producto" Type="decimal" Precision="12" Scale="2" />
+  </EntityType>
+  <EntityType Name="Reclamo">
+    <Key>
+      <PropertyRef Name="id_reclamo" />
+    </Key>
+    <Property Name="id_reclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoria" Type="varchar" MaxLength="100" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" />
+    <Property Name="fecha_reclamo" Type="date" />
+    <Property Name="calificacion" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="agente_id" Type="int" Nullable="false" />
+    <Property Name="id_pedido" Type="int" Nullable="false" />
+    <Property Name="id_producto" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="contrasenia" Type="varchar" MaxLength="50" />
+    <Property Name="rol" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_usuario" Type="varchar" MaxLength="50" />
+    <Property Name="cliente_id" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.CantidadDePedidosPorCliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="CantidadDePedidosPorCliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="cantidad_pedidos" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.CantidadDeReclamosPorAgente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="CantidadDeReclamosPorAgente">
+    <Key>
+      <PropertyRef Name="id_agente" />
+    </Key>
+    <Property Name="id_agente" Type="int" Nullable="false" />
+    <Property Name="nombres_agente" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos_agente" Type="varchar" MaxLength="50" />
+    <Property Name="cantidad_reclamos" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosConReclamos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ProductosConReclamos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+    <Property Name="cantidad_reclamos" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosMasVendidos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ProductosMasVendidos">
+    <Key>
+      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="total_vendido" />
+    </Key>
+    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion_producto" Type="varchar" MaxLength="200" />
+    <Property Name="precio_producto" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="total_vendido" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosMejorCalificados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ProductosMejorCalificados">
+    <Key>
+      <PropertyRef Name="id_producto" />
+    </Key>
+    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+    <Property Name="calificacion_promedio" Type="decimal" Precision="38" Scale="6" />
+  </EntityType>
+  <Association Name="FK_Pedido_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_por_pedido_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="Producto_por_Pedido">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_producto_por_pedido_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="Producto_por_Pedido">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamo_Agente">
+    <End Role="Agente" Type="Self.Agente" Multiplicity="1" />
+    <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agente">
+        <PropertyRef Name="id_agente" />
+      </Principal>
+      <Dependent Role="Reclamo">
+        <PropertyRef Name="agente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamo_producto_por_pedido">
+    <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="1" />
+    <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto_por_Pedido">
+        <PropertyRef Name="id_pedido" />
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="Reclamo">
+        <PropertyRef Name="id_pedido" />
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelEFStoreContainer">
+    <EntitySet Name="Agente" EntityType="Self.Agente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto_por_Pedido" EntityType="Self.Producto_por_Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reclamo" EntityType="Self.Reclamo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CantidadDePedidosPorCliente" EntityType="Self.CantidadDePedidosPorCliente" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CantidadDePedidosPorCliente].[id_cliente] AS [id_cliente], 
+    [CantidadDePedidosPorCliente].[nombres] AS [nombres], 
+    [CantidadDePedidosPorCliente].[apellidos] AS [apellidos], 
+    [CantidadDePedidosPorCliente].[cantidad_pedidos] AS [cantidad_pedidos]
+    FROM [dbo].[CantidadDePedidosPorCliente] AS [CantidadDePedidosPorCliente]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CantidadDeReclamosPorAgente" EntityType="Self.CantidadDeReclamosPorAgente" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CantidadDeReclamosPorAgente].[id_agente] AS [id_agente], 
+    [CantidadDeReclamosPorAgente].[nombres_agente] AS [nombres_agente], 
+    [CantidadDeReclamosPorAgente].[apellidos_agente] AS [apellidos_agente], 
+    [CantidadDeReclamosPorAgente].[cantidad_reclamos] AS [cantidad_reclamos]
+    FROM [dbo].[CantidadDeReclamosPorAgente] AS [CantidadDeReclamosPorAgente]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductosConReclamos" EntityType="Self.ProductosConReclamos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductosConReclamos].[id_producto] AS [id_producto], 
+    [ProductosConReclamos].[nombre_producto] AS [nombre_producto], 
+    [ProductosConReclamos].[cantidad_reclamos] AS [cantidad_reclamos]
+    FROM [dbo].[ProductosConReclamos] AS [ProductosConReclamos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductosMasVendidos" EntityType="Self.ProductosMasVendidos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductosMasVendidos].[id_producto] AS [id_producto], 
+    [ProductosMasVendidos].[nombre_producto] AS [nombre_producto], 
+    [ProductosMasVendidos].[descripcion_producto] AS [descripcion_producto], 
+    [ProductosMasVendidos].[precio_producto] AS [precio_producto], 
+    [ProductosMasVendidos].[total_vendido] AS [total_vendido]
+    FROM [dbo].[ProductosMasVendidos] AS [ProductosMasVendidos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductosMejorCalificados" EntityType="Self.ProductosMejorCalificados" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductosMejorCalificados].[id_producto] AS [id_producto], 
+    [ProductosMejorCalificados].[nombre_producto] AS [nombre_producto], 
+    [ProductosMejorCalificados].[calificacion_promedio] AS [calificacion_promedio]
+    FROM [dbo].[ProductosMejorCalificados] AS [ProductosMejorCalificados]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_por_pedido_Pedido" Association="Self.FK_producto_por_pedido_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_producto_por_pedido_Productos" Association="Self.FK_producto_por_pedido_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamo_Agente" Association="Self.FK_Reclamo_Agente">
+      <End Role="Agente" EntitySet="Agente" />
+      <End Role="Reclamo" EntitySet="Reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamo_producto_por_pedido" Association="Self.FK_Reclamo_producto_por_pedido">
+      <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+      <End Role="Reclamo" EntitySet="Reclamo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cliente" Association="Self.FK_Usuario_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

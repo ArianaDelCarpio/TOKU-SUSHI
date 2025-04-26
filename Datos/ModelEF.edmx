@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelEF.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agente">
+          <Key>
+            <PropertyRef Name="id_agente" />
+          </Key>
+          <Property Name="id_agente" Type="int" Nullable="false" />
+          <Property Name="nombres_agente" Type="varchar" MaxLength="50" />
+          <Property Name="apellidos_agente" Type="varchar" MaxLength="50" />
+          <Property Name="especialidad" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="dni" Type="char" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto_por_Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_pedido" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="cantidad_producto" Type="int" />
+          <Property Name="subtotal_producto" Type="decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion_producto" Type="varchar" MaxLength="200" />
+          <Property Name="precio_producto" Type="decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="Reclamo">
+          <Key>
+            <PropertyRef Name="id_reclamo" />
+          </Key>
+          <Property Name="id_reclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="fecha_reclamo" Type="date" />
+          <Property Name="calificacion" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="agente_id" Type="int" Nullable="false" />
+          <Property Name="id_pedido" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="50" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="50" />
+          <Property Name="cliente_id" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.CantidadDePedidosPorCliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CantidadDePedidosPorCliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="50" />
+          <Property Name="apellidos" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_pedidos" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.CantidadDeReclamosPorAgente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CantidadDeReclamosPorAgente">
+          <Key>
+            <PropertyRef Name="id_agente" />
+          </Key>
+          <Property Name="id_agente" Type="int" Nullable="false" />
+          <Property Name="nombres_agente" Type="varchar" MaxLength="50" />
+          <Property Name="apellidos_agente" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_reclamos" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosConReclamos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ProductosConReclamos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_reclamos" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosMasVendidos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ProductosMasVendidos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+            <PropertyRef Name="total_vendido" />
+          </Key>
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion_producto" Type="varchar" MaxLength="200" />
+          <Property Name="precio_producto" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="total_vendido" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbTokuSushi.dbo.ProductosMejorCalificados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ProductosMejorCalificados">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="50" />
+          <Property Name="calificacion_promedio" Type="decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <Association Name="FK_Pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_producto_por_pedido_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="Producto_por_Pedido">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_producto_por_pedido_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Producto_por_Pedido">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reclamo_Agente">
+          <End Role="Agente" Type="Self.Agente" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agente">
+              <PropertyRef Name="id_agente" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="agente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reclamo_producto_por_pedido">
+          <End Role="Producto_por_Pedido" Type="Self.Producto_por_Pedido" Multiplicity="1" />
+          <End Role="Reclamo" Type="Self.Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto_por_Pedido">
+              <PropertyRef Name="id_pedido" />
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="id_pedido" />
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelEFStoreContainer">
+          <EntitySet Name="Agente" EntityType="Self.Agente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_por_Pedido" EntityType="Self.Producto_por_Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reclamo" EntityType="Self.Reclamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CantidadDePedidosPorCliente" EntityType="Self.CantidadDePedidosPorCliente" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CantidadDePedidosPorCliente].[id_cliente] AS [id_cliente], 
+    [CantidadDePedidosPorCliente].[nombres] AS [nombres], 
+    [CantidadDePedidosPorCliente].[apellidos] AS [apellidos], 
+    [CantidadDePedidosPorCliente].[cantidad_pedidos] AS [cantidad_pedidos]
+    FROM [dbo].[CantidadDePedidosPorCliente] AS [CantidadDePedidosPorCliente]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CantidadDeReclamosPorAgente" EntityType="Self.CantidadDeReclamosPorAgente" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CantidadDeReclamosPorAgente].[id_agente] AS [id_agente], 
+    [CantidadDeReclamosPorAgente].[nombres_agente] AS [nombres_agente], 
+    [CantidadDeReclamosPorAgente].[apellidos_agente] AS [apellidos_agente], 
+    [CantidadDeReclamosPorAgente].[cantidad_reclamos] AS [cantidad_reclamos]
+    FROM [dbo].[CantidadDeReclamosPorAgente] AS [CantidadDeReclamosPorAgente]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductosConReclamos" EntityType="Self.ProductosConReclamos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductosConReclamos].[id_producto] AS [id_producto], 
+    [ProductosConReclamos].[nombre_producto] AS [nombre_producto], 
+    [ProductosConReclamos].[cantidad_reclamos] AS [cantidad_reclamos]
+    FROM [dbo].[ProductosConReclamos] AS [ProductosConReclamos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductosMasVendidos" EntityType="Self.ProductosMasVendidos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductosMasVendidos].[id_producto] AS [id_producto], 
+    [ProductosMasVendidos].[nombre_producto] AS [nombre_producto], 
+    [ProductosMasVendidos].[descripcion_producto] AS [descripcion_producto], 
+    [ProductosMasVendidos].[precio_producto] AS [precio_producto], 
+    [ProductosMasVendidos].[total_vendido] AS [total_vendido]
+    FROM [dbo].[ProductosMasVendidos] AS [ProductosMasVendidos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProductosMejorCalificados" EntityType="Self.ProductosMejorCalificados" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductosMejorCalificados].[id_producto] AS [id_producto], 
+    [ProductosMejorCalificados].[nombre_producto] AS [nombre_producto], 
+    [ProductosMejorCalificados].[calificacion_promedio] AS [calificacion_promedio]
+    FROM [dbo].[ProductosMejorCalificados] AS [ProductosMejorCalificados]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_producto_por_pedido_Pedido" Association="Self.FK_producto_por_pedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_producto_por_pedido_Productos" Association="Self.FK_producto_por_pedido_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reclamo_Agente" Association="Self.FK_Reclamo_Agente">
+            <End Role="Agente" EntitySet="Agente" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reclamo_producto_por_pedido" Association="Self.FK_Reclamo_producto_por_pedido">
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Cliente" Association="Self.FK_Usuario_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModelEF" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="BDEFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="ProductosConReclamos" EntityType="ModelEF.ProductosConReclamos" />
+          <EntitySet Name="ProductosMejorCalificados" EntityType="ModelEF.ProductosMejorCalificados" />
+          <EntitySet Name="CantidadDePedidosPorCliente" EntityType="ModelEF.CantidadDePedidosPorCliente" />
+          <EntitySet Name="ProductosMasVendidos" EntityType="ModelEF.ProductosMasVendidos" />
+          <EntitySet Name="CantidadDeReclamosPorAgente" EntityType="ModelEF.CantidadDeReclamosPorAgente" />
+          <EntitySet Name="Agente" EntityType="ModelEF.Agente" />
+          <EntitySet Name="Cliente" EntityType="ModelEF.Cliente" />
+          <EntitySet Name="Pedido" EntityType="ModelEF.Pedido" />
+          <EntitySet Name="Producto_por_Pedido" EntityType="ModelEF.Producto_por_Pedido" />
+          <EntitySet Name="Productos" EntityType="ModelEF.Productos" />
+          <EntitySet Name="Reclamo" EntityType="ModelEF.Reclamo" />
+          <EntitySet Name="Usuario" EntityType="ModelEF.Usuario" />
+          <AssociationSet Name="FK_Reclamo_Agente" Association="ModelEF.FK_Reclamo_Agente">
+            <End Role="Agente" EntitySet="Agente" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido_Cliente" Association="ModelEF.FK_Pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Cliente" Association="ModelEF.FK_Usuario_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_producto_por_pedido_Pedido" Association="ModelEF.FK_producto_por_pedido_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_producto_por_pedido_Productos" Association="ModelEF.FK_producto_por_pedido_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reclamo_producto_por_pedido" Association="ModelEF.FK_Reclamo_producto_por_pedido">
+            <End Role="Producto_por_Pedido" EntitySet="Producto_por_Pedido" />
+            <End Role="Reclamo" EntitySet="Reclamo" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProductosConReclamos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_reclamos" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProductosMejorCalificados">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calificacion_promedio" Type="Decimal" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="CantidadDePedidosPorCliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_pedidos" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProductosMasVendidos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+            <PropertyRef Name="total_vendido" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="precio_producto" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="total_vendido" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CantidadDeReclamosPorAgente">
+          <Key>
+            <PropertyRef Name="id_agente" />
+          </Key>
+          <Property Name="id_agente" Type="Int32" Nullable="false" />
+          <Property Name="nombres_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_reclamos" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Agente">
+          <Key>
+            <PropertyRef Name="id_agente" />
+          </Key>
+          <Property Name="id_agente" Type="Int32" Nullable="false" />
+          <Property Name="nombres_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos_agente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reclamo" Relationship="ModelEF.FK_Reclamo_Agente" FromRole="Agente" ToRole="Reclamo" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Pedido" Relationship="ModelEF.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+          <NavigationProperty Name="Usuario" Relationship="ModelEF.FK_Usuario_Cliente" FromRole="Cliente" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="ModelEF.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_producto_por_pedido_Pedido" FromRole="Pedido" ToRole="Producto_por_Pedido" />
+        </EntityType>
+        <EntityType Name="Producto_por_Pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad_producto" Type="Int32" />
+          <Property Name="subtotal_producto" Type="Decimal" Precision="12" Scale="2" />
+          <NavigationProperty Name="Pedido" Relationship="ModelEF.FK_producto_por_pedido_Pedido" FromRole="Producto_por_Pedido" ToRole="Pedido" />
+          <NavigationProperty Name="Productos" Relationship="ModelEF.FK_producto_por_pedido_Productos" FromRole="Producto_por_Pedido" ToRole="Productos" />
+          <NavigationProperty Name="Reclamo" Relationship="ModelEF.FK_Reclamo_producto_por_pedido" FromRole="Producto_por_Pedido" ToRole="Reclamo" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="precio_producto" Type="Decimal" Precision="12" Scale="2" />
+          <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_producto_por_pedido_Productos" FromRole="Productos" ToRole="Producto_por_Pedido" />
+        </EntityType>
+        <EntityType Name="Reclamo">
+          <Key>
+            <PropertyRef Name="id_reclamo" />
+          </Key>
+          <Property Name="id_reclamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_reclamo" Type="DateTime" Precision="0" />
+          <Property Name="calificacion" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="agente_id" Type="Int32" Nullable="false" />
+          <Property Name="id_pedido" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agente" Relationship="ModelEF.FK_Reclamo_Agente" FromRole="Reclamo" ToRole="Agente" />
+          <NavigationProperty Name="Producto_por_Pedido" Relationship="ModelEF.FK_Reclamo_producto_por_pedido" FromRole="Reclamo" ToRole="Producto_por_Pedido" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_id" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="ModelEF.FK_Usuario_Cliente" FromRole="Usuario" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK_Reclamo_Agente">
+          <End Type="ModelEF.Agente" Role="Agente" Multiplicity="1" />
+          <End Type="ModelEF.Reclamo" Role="Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agente">
+              <PropertyRef Name="id_agente" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="agente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido_Cliente">
+          <End Type="ModelEF.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ModelEF.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Cliente">
+          <End Type="ModelEF.Cliente" Role="Cliente" Multiplicity="0..1" />
+          <End Type="ModelEF.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_producto_por_pedido_Pedido">
+          <End Type="ModelEF.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="Producto_por_Pedido">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_producto_por_pedido_Productos">
+          <End Type="ModelEF.Productos" Role="Productos" Multiplicity="1" />
+          <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Producto_por_Pedido">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reclamo_producto_por_pedido">
+          <End Type="ModelEF.Producto_por_Pedido" Role="Producto_por_Pedido" Multiplicity="1" />
+          <End Type="ModelEF.Reclamo" Role="Reclamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto_por_Pedido">
+              <PropertyRef Name="id_pedido" />
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Reclamo">
+              <PropertyRef Name="id_pedido" />
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelEFStoreContainer" CdmEntityContainer="BDEFEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ModelEF.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductosConReclamos">
+            <EntityTypeMapping TypeName="ModelEF.ProductosConReclamos">
+              <MappingFragment StoreEntitySet="ProductosConReclamos">
+                <ScalarProperty Name="cantidad_reclamos" ColumnName="cantidad_reclamos" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductosMejorCalificados">
+            <EntityTypeMapping TypeName="ModelEF.ProductosMejorCalificados">
+              <MappingFragment StoreEntitySet="ProductosMejorCalificados">
+                <ScalarProperty Name="calificacion_promedio" ColumnName="calificacion_promedio" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CantidadDePedidosPorCliente">
+            <EntityTypeMapping TypeName="ModelEF.CantidadDePedidosPorCliente">
+              <MappingFragment StoreEntitySet="CantidadDePedidosPorCliente">
+                <ScalarProperty Name="cantidad_pedidos" ColumnName="cantidad_pedidos" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductosMasVendidos">
+            <EntityTypeMapping TypeName="ModelEF.ProductosMasVendidos">
+              <MappingFragment StoreEntitySet="ProductosMasVendidos">
+                <ScalarProperty Name="total_vendido" ColumnName="total_vendido" />
+                <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CantidadDeReclamosPorAgente">
+            <EntityTypeMapping TypeName="ModelEF.CantidadDeReclamosPorAgente">
+              <MappingFragment StoreEntitySet="CantidadDeReclamosPorAgente">
+                <ScalarProperty Name="cantidad_reclamos" ColumnName="cantidad_reclamos" />
+                <ScalarProperty Name="apellidos_agente" ColumnName="apellidos_agente" />
+                <ScalarProperty Name="nombres_agente" ColumnName="nombres_agente" />
+                <ScalarProperty Name="id_agente" ColumnName="id_agente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Agente">
+            <EntityTypeMapping TypeName="ModelEF.Agente">
+              <MappingFragment StoreEntitySet="Agente">
+                <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+                <ScalarProperty Name="apellidos_agente" ColumnName="apellidos_agente" />
+                <ScalarProperty Name="nombres_agente" ColumnName="nombres_agente" />
+                <ScalarProperty Name="id_agente" ColumnName="id_agente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ModelEF.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="ModelEF.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_por_Pedido">
+            <EntityTypeMapping TypeName="ModelEF.Producto_por_Pedido">
+              <MappingFragment StoreEntitySet="Producto_por_Pedido">
+                <ScalarProperty Name="subtotal_producto" ColumnName="subtotal_producto" />
+                <ScalarProperty Name="cantidad_producto" ColumnName="cantidad_producto" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="ModelEF.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reclamo">
+            <EntityTypeMapping TypeName="ModelEF.Reclamo">
+              <MappingFragment StoreEntitySet="Reclamo">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="agente_id" ColumnName="agente_id" />
+                <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+                <ScalarProperty Name="fecha_reclamo" ColumnName="fecha_reclamo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="id_reclamo" ColumnName="id_reclamo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ModelEF.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7f9219c5bc7d4d298cfa0a660bcff517" Name="Diagram1" ZoomLevel="142">
+        <EntityTypeShape EntityType="ModelEF.sysdiagrams" Width="1.5" PointX="13.375" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelEF.ProductosConReclamos" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelEF.ProductosMejorCalificados" Width="1.5" PointX="3.25" PointY="7.75" />
+        <EntityTypeShape EntityType="ModelEF.CantidadDePedidosPorCliente" Width="1.5" PointX="5.625" PointY="7.75" />
+        <EntityTypeShape EntityType="ModelEF.ProductosMasVendidos" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ModelEF.CantidadDeReclamosPorAgente" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ModelEF.Agente" Width="1.5" PointX="7.625" PointY="4.125" />
+        <EntityTypeShape EntityType="ModelEF.Cliente" Width="1.5" PointX="0.875" PointY="0.875" />
+        <EntityTypeShape EntityType="ModelEF.Pedido" Width="1.5" PointX="3.125" PointY="0.875" />
+        <EntityTypeShape EntityType="ModelEF.Producto_por_Pedido" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ModelEF.Productos" Width="1.5" PointX="5.5" PointY="4.25" />
+        <EntityTypeShape EntityType="ModelEF.Reclamo" Width="1.5" PointX="7.625" PointY="0.5" />
+        <EntityTypeShape EntityType="ModelEF.Usuario" Width="1.5" PointX="3.125" PointY="3.75" />
+        <AssociationConnector Association="ModelEF.FK_Reclamo_Agente" />
+        <AssociationConnector Association="ModelEF.FK_Pedido_Cliente" />
+        <AssociationConnector Association="ModelEF.FK_Usuario_Cliente" />
+        <AssociationConnector Association="ModelEF.FK_producto_por_pedido_Pedido" />
+        <AssociationConnector Association="ModelEF.FK_producto_por_pedido_Productos" />
+        <AssociationConnector Association="ModelEF.FK_Reclamo_producto_por_pedido" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

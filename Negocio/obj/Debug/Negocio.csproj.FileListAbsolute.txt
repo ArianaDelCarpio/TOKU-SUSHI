@@ -1,0 +1,24 @@
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Negocio.dll
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.dll
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.pdb
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.dll.config
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.dll
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Usuario\source\repos\Trabajo Final Toku Sushi\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.Up2Date
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Negocio.dll
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Negocio.pdb
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.dll
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.pdb
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\Datos.dll.config
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.dll
+C:\Users\user\Downloads\TF_Fundamentos_TokuSushi_Grupo5_SV53\Negocio\obj\Debug\Negocio.pdb
